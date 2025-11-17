@@ -19,6 +19,7 @@ function Header() {
         </div>
 
         <div className="flex items-center justify-center">
+          
           <Link
             href="/dashboard/settings"
             className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"

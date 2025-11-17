@@ -20,7 +20,7 @@ export default function GoogleButton() {
       className="w-full flex items-center justify-center gap-2 border"
       variant="outline"
     >
-      <FcGoogle size={20} /> <span>Entrar com Google</span>
+      <FcGoogle size={20} /> <span>Enter with Google</span>
     </Button>
   );
 }

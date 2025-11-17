@@ -7,10 +7,18 @@ import { AppDispatch } from "../store/store";
 import { logout } from "../features/auth/authSlice";
 import Image from "next/image";
 import Link from "next/link";
-import { Home, List, LogOut, User } from "lucide-react";
+import {
+  CalendarClock,
+  FolderKanban,
+  Home,
+  List,
+  LogOut,
+  User,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
+import LogoutModal from "@/components/ui/logoutButton";
 
-function SidebarClient({ user, profile }: any) {
+function SidebarLeft({ user, profile }: any) {
   const router = useRouter();
   const dispatch = useAppDispatch() as unknown as AppDispatch;
   const pathname = usePathname();
@@ -23,19 +31,19 @@ function SidebarClient({ user, profile }: any) {
     }
   };
 
-
   const isActive = (href) => {
-    if (href === '/') {
+    if (href === "/") {
       return pathname === href;
     }
     // Para rotas aninhadas, como /dashboard/tasks, verifica se começa com o href
     return pathname === href;
   };
-  
+
   // Função auxiliar para determinar classes do ícone (fundo e cor do texto)
   const getIconClasses = (href) => {
-    const activeClasses = 'bg-linear-to-br from-black/70 to-black/90 text-slate-100'; // Cor ativa
-    const defaultClasses = 'bg-slate-100 border-slate-300 text-slate-500'; // Cor padrão
+    const activeClasses =
+      "bg-linear-to-br from-black/70 to-black/90 text-slate-100"; // Cor ativa
+    const defaultClasses = "bg-slate-50 border-slate-200 text-slate-500"; // Cor padrão
 
     return `w-10 h-10 p-2 rounded-md border transition-all duration-150 ${
       isActive(href) ? activeClasses : defaultClasses
@@ -44,29 +52,16 @@ function SidebarClient({ user, profile }: any) {
 
   // Função auxiliar para determinar classes do link (cor do texto)
   const getLinkTextClasses = (href) => {
-    const activeClasses = 'text-black/80 font-medium'; // Cor ativa e negrito
-    const defaultClasses = 'text-slate-700 font-regular'; // Cor padrão
+    const activeClasses = "text-black/80 font-medium"; // Cor ativa e negrito
+    const defaultClasses = "text-slate-700 font-regular"; // Cor padrão
 
-    return `${
-      isActive(href) ? activeClasses : defaultClasses
-    }`;
+    return `${isActive(href) ? activeClasses : defaultClasses}`;
   };
 
   return (
     <>
-      <aside className="fixed left-0 top-20 z-40 w-68 h-screen bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 p-6 hidden md:block">
+      <aside className="fixed left-0 top-20 z-40 w-68 h-screen bg-white dark:bg-slate-800 p-6 hidden md:block">
         <div className="flex flex-col justify-start items-start h-full">
-          {/* <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-sm bg-linear-to-br from-black/70 to-black/90 flex items-center justify-center text-white font-bold">
-              TH
-            </div>
-            <div className="flex-1">
-              <div className="text-lg font-semibold">TaskHub Pro</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">
-                Organize your work
-              </div>
-            </div>
-          </div> */}
           {/* User */}
           <div className="flex flex-col items-center justify-start gap-4 mb-8">
             <Image
@@ -92,17 +87,14 @@ function SidebarClient({ user, profile }: any) {
 
           {/* Nav */}
           <nav className="flex-1 w-full">
-            <ul className="flex items-center justify-between flex-wrap gap-5">
+            <ul className="flex items-center justify-between flex-wrap gap-4">
               <li className="">
                 <Link
                   href="/dashboard"
                   className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
                 >
-                  <Home
-                    size={18}
-                    className={getIconClasses('/dashboard')}
-                  />
-                  <span className={getLinkTextClasses('/dashboard')}>Home</span>
+                  <Home size={18} className={getIconClasses("/dashboard")} />
+                  <span className={getLinkTextClasses("/dashboard")}>Home</span>
                 </Link>
               </li>
               <li>
@@ -112,9 +104,40 @@ function SidebarClient({ user, profile }: any) {
                 >
                   <List
                     size={18}
-                     className={getIconClasses('/dashboard/tasks')}
+                    className={getIconClasses("/dashboard/tasks")}
                   />
-                  <span className="font-regular text-slate-800">Tasks</span>
+                  <span className={getLinkTextClasses("/dashboard/tasks")}>
+                    Tasks
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/dashboard/projects"
+                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                >
+                  <FolderKanban
+                    size={18}
+                    className={getIconClasses("/dashboard/projects")}
+                  />
+                  <span className={getLinkTextClasses("/dashboard/projects")}>
+                    Projects
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/dashboard/events"
+                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                >
+                  <CalendarClock
+                    size={18}
+                    className={getIconClasses("/dashboard/events")}
+                  />
+
+                  <span className={getLinkTextClasses("/dashboard/events")}>
+                    Events
+                  </span>
                 </Link>
               </li>
               <li>
@@ -124,22 +147,15 @@ function SidebarClient({ user, profile }: any) {
                 >
                   <User
                     size={18}
-                    className={getIconClasses('/dashboard/profile')}
+                    className={getIconClasses("/dashboard/profile")}
                   />
-                  <span className="font-regular text-slate-800">Profile</span>
+                  <span className={getLinkTextClasses("/dashboard/profile")}>
+                    Profile
+                  </span>
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  onClick={handleLogout}
-                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
-                >
-                  <LogOut size={18}
-                    className="w-10 h-10 p-2 bg-slate-100 rounded-sm border border-slate-300 text-slate-500"
-                  />
-                  <span className="font-regular text-slate-800">Logout</span>
-                </Link>
+                <LogoutModal />
               </li>
             </ul>
           </nav>
@@ -185,4 +201,4 @@ function SidebarClient({ user, profile }: any) {
   );
 }
 
-export default SidebarClient;
+export default SidebarLeft;

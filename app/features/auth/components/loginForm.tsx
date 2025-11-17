@@ -52,7 +52,7 @@ const onSignup = async (data: any) => {
   };
 
   return (
-    <div className="space-y-4 p-6 bg-white dark:bg-slate-800 rounded-md shadow-md">
+    <div className=" space-y-4 p-6 bg-white dark:bg-slate-800 rounded-md shadow-md">
       <form onSubmit={handleSubmit(onSubmit)} className=" space-y-4">
         <Input placeholder="Email" {...register("email")} />
         {errors.email && (
@@ -66,7 +66,7 @@ const onSignup = async (data: any) => {
 
         <div className="text-center">
           <a href="" className="text-sm font-medium text-primary hover:text-primary/70 transition durantion-200 ">
-            Esqueceu a senha?
+            Forgot password?
           </a>
         </div>
 
@@ -79,18 +79,19 @@ const onSignup = async (data: any) => {
             Entrar
           </Button>
          <div className="flex items-center justify-center">
-          <p className="text-sm font-medium text-slate-500">Ainda não tem cadastro? </p>
+          <p className="text-sm font-medium text-slate-500 pr-2">Don´t have account? {' '} </p>
         <a
             href="/newAccount"
+            className="text-sm font-medium text-slate-800 hover:text-slate-900"
         >
-            Cadastre-se Aqui!
+            Create new here!
         </a>
     </div>
         </div>
       </form>
       <div className="space-y-4">
         <div className="text-center">
-          <p className="text-sm text-gray-500">ou</p>
+          <p className="text-sm text-gray-500">or</p>
         </div>
         <GoogleButton />
       </div>

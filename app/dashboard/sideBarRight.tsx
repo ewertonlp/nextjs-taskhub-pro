@@ -1,0 +1,198 @@
+"use client";
+
+import { useRouter, usePathname } from "next/navigation";
+import React from "react";
+import { useAppDispatch } from "../store/hooks";
+import { AppDispatch } from "../store/store";
+import { logout } from "../features/auth/authSlice";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  CalendarClock,
+  FolderKanban,
+  Home,
+  List,
+  LogOut,
+  User,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import AlertsCard from "./components/alertsCard";
+
+function SidebarRight({ user, profile }: any) {
+  const router = useRouter();
+  const dispatch = useAppDispatch() as unknown as AppDispatch;
+  const pathname = usePathname();
+
+  const handleLogout = async () => {
+    try {
+      await dispatch(logout()).unwrap?.();
+    } catch (error) {
+      console.log("Logout error", error);
+    }
+  };
+
+  const isActive = (href) => {
+    if (href === "/") {
+      return pathname === href;
+    }
+    // Para rotas aninhadas, como /dashboard/tasks, verifica se começa com o href
+    return pathname === href;
+  };
+
+  // Função auxiliar para determinar classes do ícone (fundo e cor do texto)
+  const getIconClasses = (href) => {
+    const activeClasses =
+      "bg-linear-to-br from-black/70 to-black/90 text-slate-100"; // Cor ativa
+    const defaultClasses = "bg-slate-50 border-slate-200 text-slate-500"; // Cor padrão
+
+    return `w-10 h-10 p-2 rounded-md border transition-all duration-150 ${
+      isActive(href) ? activeClasses : defaultClasses
+    }`;
+  };
+
+  // Função auxiliar para determinar classes do link (cor do texto)
+  const getLinkTextClasses = (href) => {
+    const activeClasses = "text-black/80 font-medium"; // Cor ativa e negrito
+    const defaultClasses = "text-slate-700 font-regular"; // Cor padrão
+
+    return `${isActive(href) ? activeClasses : defaultClasses}`;
+  };
+
+  return (
+    <>
+      <aside className="fixed right-0 top-20 z-40 w-96 h-screen bg-white dark:bg-slate-800 pr-4 py-6 hidden md:block">
+        <div className="flex flex-col justify-start items-start h-full">
+          {/* Alerts */}
+          <div className="w-full flex flex-col items-center justify-start mb-8 bg-slate-50 rounded-lg">
+            <AlertsCard />
+          </div>
+
+          {/* Nav */}
+          <nav className="flex-1 w-full">
+            <ul className="flex items-center justify-between flex-wrap gap-4">
+              <li className="">
+                <Link
+                  href="/dashboard"
+                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                >
+                  <Home size={18} className={getIconClasses("/dashboard")} />
+                  <span className={getLinkTextClasses("/dashboard")}>Home</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/dashboard/tasks"
+                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                >
+                  <List
+                    size={18}
+                    className={getIconClasses("/dashboard/tasks")}
+                  />
+                  <span className={getLinkTextClasses("/dashboard/tasks")}>
+                    Tasks
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/dashboard/projects"
+                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                >
+                  <FolderKanban
+                    size={18}
+                    className={getIconClasses("/dashboard/projects")}
+                  />
+                  <span className={getLinkTextClasses("/dashboard/projects")}>
+                    Projects
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/dashboard/events"
+                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                >
+                  <CalendarClock
+                    size={18}
+                    className={getIconClasses("/dashboard/events")}
+                  />
+
+                  <span className={getLinkTextClasses("/dashboard/events")}>
+                    Events
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/dashboard/profile"
+                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                >
+                  <User
+                    size={18}
+                    className={getIconClasses("/dashboard/profile")}
+                  />
+                  <span className={getLinkTextClasses("/dashboard/profile")}>
+                    Profile
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  onClick={handleLogout}
+                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                >
+                  <LogOut
+                    size={18}
+                    className={getIconClasses("/dashboard/logout")}
+                  />
+                  <span className={getLinkTextClasses("/dashboard/logout")}>
+                    Logout
+                  </span>
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          {/* Footer actions */}
+          <div className="mt-6">
+            <Button
+              onClick={handleLogout}
+              variant="ghost"
+              className="w-full flex items-center gap-3 px-3 py-2 rounded-sm transition duration-150"
+            >
+              <LogOut size={18} />
+              <span>Logout</span>
+            </Button>
+          </div>
+        </div>
+      </aside>
+
+      {/* Mobile bottom bar (minimal) */}
+      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40 md:hidden">
+        <div className="bg-white dark:bg-slate-800 rounded-full shadow-lg p-2 flex gap-2">
+          <Link
+            href="/dashboard"
+            className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-700"
+          >
+            <Home size={18} />
+          </Link>
+          <Link
+            href="/dashboard/tasks"
+            className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-700"
+          >
+            <List size={18} />
+          </Link>
+          <button
+            onClick={handleLogout}
+            className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-700"
+          >
+            <LogOut size={18} />
+          </button>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default SidebarRight;

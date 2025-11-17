@@ -48,11 +48,6 @@ export const AuthService = {
   },
 
   async getCurrentUser() {
-    // Note: Em Next.js App Router, para obter o usuário em Server Components ou Server Actions,
-    // o padrão é usar um cliente Supabase específico para o servidor que lê os cookies
-    // (createClient from "@/utils/supabase/server"). Como você está usando o
-    // createClient que parece ser o cliente do navegador, esta função funcionará bem
-    // em Client Components, mas pode não funcionar corretamente em Server Components.
     const { data } = await supabase.auth.getUser();
     return data.user;
   },
