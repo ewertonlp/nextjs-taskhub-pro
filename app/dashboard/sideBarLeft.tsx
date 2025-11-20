@@ -13,6 +13,7 @@ import {
   Home,
   List,
   LogOut,
+  Settings,
   User,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -42,8 +43,8 @@ function SidebarLeft({ user, profile }: any) {
   // Função auxiliar para determinar classes do ícone (fundo e cor do texto)
   const getIconClasses = (href) => {
     const activeClasses =
-      "bg-linear-to-br from-black/70 to-black/90 text-slate-100"; // Cor ativa
-    const defaultClasses = "bg-slate-50 border-slate-200 text-slate-500"; // Cor padrão
+      "bg-linear-to-br from-black/70 to-black/90 text-amber-400"; // Cor ativa
+    const defaultClasses = "bg-slate-50 border-slate-200 text-amber-500"; // Cor padrão
 
     return `w-10 h-10 p-2 rounded-md border transition-all duration-150 ${
       isActive(href) ? activeClasses : defaultClasses
@@ -52,8 +53,8 @@ function SidebarLeft({ user, profile }: any) {
 
   // Função auxiliar para determinar classes do link (cor do texto)
   const getLinkTextClasses = (href) => {
-    const activeClasses = "text-black/80 font-medium"; // Cor ativa e negrito
-    const defaultClasses = "text-slate-700 font-regular"; // Cor padrão
+    const activeClasses = "text-slate-800 font-medium"; // Cor ativa e negrito
+    const defaultClasses = "text-sm text-slate-700 font-regular"; // Cor padrão
 
     return `${isActive(href) ? activeClasses : defaultClasses}`;
   };
@@ -61,23 +62,24 @@ function SidebarLeft({ user, profile }: any) {
   return (
     <>
       <aside className="fixed left-0 top-20 z-40 w-68 h-screen bg-white dark:bg-slate-800 p-6 hidden md:block">
-        <div className="flex flex-col justify-start items-start h-full">
+        <div className="flex flex-col justify-start items-center h-full">
           {/* User */}
-          <div className="flex flex-col items-center justify-start gap-4 mb-8">
+          <div className="flex flex-col items-center justify-center gap-4 mb-8">
             <Image
               src={
-                profile?.avatar_url ??
-                `https://api.dicebear.com/8bit-icons/svg?seed=${user.id}`
+                user.user_metadata?.avatar_url ||
+                profile?.avatar_url ||
+                `https://api.dicebear.com/7.x/pixel-art/svg?seed=${user.id}`
               }
               alt="avatar"
               width={80}
               height={80}
-              className="rounded-full border-10 border-slate-100"
+              className="rounded-full border-10 border-slate-100 object-cover"
             />
 
-            <div>
+            <div className="text-center">
               <div className="font-medium">
-                {profile?.full_name ?? user.email}
+                {user.user_metadata?.name || profile?.full_name}
               </div>
               <div className="text-xs text-gray-500 dark:text-gray-400">
                 {user.email}
@@ -155,22 +157,24 @@ function SidebarLeft({ user, profile }: any) {
                 </Link>
               </li>
               <li>
+                <Link
+                  href="/dashboard/settings"
+                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                >
+                  <Settings
+                    size={18}
+                    className={getIconClasses("/dashboard/settings")}
+                  />
+                  <span className={getLinkTextClasses("/dashboard/profile")}>
+                    Settings
+                  </span>
+                </Link>
+              </li>
+              <li>
                 <LogoutModal />
               </li>
             </ul>
           </nav>
-
-          {/* Footer actions */}
-          <div className="mt-6">
-            <Button
-              onClick={handleLogout}
-              variant="ghost"
-              className="w-full flex items-center gap-3 px-3 py-2 rounded-sm transition duration-150"
-            >
-              <LogOut size={18} />
-              <span>Logout</span>
-            </Button>
-          </div>
         </div>
       </aside>
 

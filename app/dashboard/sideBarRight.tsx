@@ -60,111 +60,13 @@ function SidebarRight({ user, profile }: any) {
 
   return (
     <>
-      <aside className="fixed right-0 top-20 z-40 w-96 h-screen bg-white dark:bg-slate-800 pr-4 py-6 hidden md:block">
+      <aside className="fixed right-0 top-20 z-40 hidden md:w-96 h-screen bg-white dark:bg-slate-800 pr-4 py-6 md:block">
         <div className="flex flex-col justify-start items-start h-full">
           {/* Alerts */}
           <div className="w-full flex flex-col items-center justify-start mb-8 bg-slate-50 rounded-lg">
             <AlertsCard />
           </div>
 
-          {/* Nav */}
-          <nav className="flex-1 w-full">
-            <ul className="flex items-center justify-between flex-wrap gap-4">
-              <li className="">
-                <Link
-                  href="/dashboard"
-                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
-                >
-                  <Home size={18} className={getIconClasses("/dashboard")} />
-                  <span className={getLinkTextClasses("/dashboard")}>Home</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/dashboard/tasks"
-                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
-                >
-                  <List
-                    size={18}
-                    className={getIconClasses("/dashboard/tasks")}
-                  />
-                  <span className={getLinkTextClasses("/dashboard/tasks")}>
-                    Tasks
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/dashboard/projects"
-                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
-                >
-                  <FolderKanban
-                    size={18}
-                    className={getIconClasses("/dashboard/projects")}
-                  />
-                  <span className={getLinkTextClasses("/dashboard/projects")}>
-                    Projects
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/dashboard/events"
-                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
-                >
-                  <CalendarClock
-                    size={18}
-                    className={getIconClasses("/dashboard/events")}
-                  />
-
-                  <span className={getLinkTextClasses("/dashboard/events")}>
-                    Events
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/dashboard/profile"
-                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
-                >
-                  <User
-                    size={18}
-                    className={getIconClasses("/dashboard/profile")}
-                  />
-                  <span className={getLinkTextClasses("/dashboard/profile")}>
-                    Profile
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  onClick={handleLogout}
-                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
-                >
-                  <LogOut
-                    size={18}
-                    className={getIconClasses("/dashboard/logout")}
-                  />
-                  <span className={getLinkTextClasses("/dashboard/logout")}>
-                    Logout
-                  </span>
-                </Link>
-              </li>
-            </ul>
-          </nav>
-
-          {/* Footer actions */}
-          <div className="mt-6">
-            <Button
-              onClick={handleLogout}
-              variant="ghost"
-              className="w-full flex items-center gap-3 px-3 py-2 rounded-sm transition duration-150"
-            >
-              <LogOut size={18} />
-              <span>Logout</span>
-            </Button>
-          </div>
         </div>
       </aside>
 

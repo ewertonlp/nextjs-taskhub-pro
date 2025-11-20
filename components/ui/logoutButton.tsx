@@ -54,8 +54,8 @@ export default function LogoutModal() {
   // Função auxiliar para determinar classes do ícone (fundo e cor do texto)
   const getIconClasses = (href) => {
     const activeClasses =
-      "bg-linear-to-br from-black/70 to-black/90 text-slate-100"; // Cor ativa
-    const defaultClasses = "bg-slate-50 border-slate-200 text-slate-500"; // Cor padrão
+      "bg-linear-to-br from-black/70 to-black/90 text-amber-300"; // Cor ativa
+    const defaultClasses = "bg-slate-50 border-slate-200 text-amber-500"; // Cor padrão
 
     return `w-10 h-10 p-2 rounded-md border transition-all duration-150 ${
       isActive(href) ? activeClasses : defaultClasses

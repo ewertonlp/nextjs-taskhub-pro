@@ -32,7 +32,7 @@ export default function LoginForm() {
   const onSubmit = async (data: any) => {
     try {
       await dispatch(login(data)).unwrap();
-      toast.success("Login realizado");
+      toast.success("Login success! Welcome back!");
       router.push("/dashboard");
     } catch (error: any) {
         toast.error(error.message);
@@ -44,7 +44,6 @@ const onSignup = async (data: any) => {
         await dispatch(signup(data)).unwrap();
         toast.success("Conta criada");
         router.push("/dashboard");
-        console.log('Cadastro realizado com sucesso no supabase')
     } catch (error) {
         toast.error(error.message);
         console.log('Cadastro realizado com sucesso no supabase', error)
@@ -59,7 +58,7 @@ const onSignup = async (data: any) => {
           <p className="text-red-500 text-sm">{errors.email.message}</p>
         )}
 
-        <Input type="password" placeholder="Senha" {...register("password")} />
+        <Input type="password" placeholder="Password" {...register("password")} />
         {errors.password && (
           <p className="text-red-500 text-sm">{errors.password.message}</p>
         )}
@@ -76,7 +75,7 @@ const onSignup = async (data: any) => {
             disabled={loading}
             className="cursor-pointer w-full"
           >
-            Entrar
+            Go to Dashboard
           </Button>
          <div className="flex items-center justify-center">
           <p className="text-sm font-medium text-slate-500 pr-2">Don´t have account? {' '} </p>

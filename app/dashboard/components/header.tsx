@@ -1,8 +1,24 @@
+"use client"
 import { Settings } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import SearchBar from "./searchBar";
+
 
 function Header() {
+   const [results, setResults] = useState([]);
+
+  const handleSearch = (query) => {
+    // Example: filter from a static list
+    const data = ["Apple", "Banana", "Orange", "Mango", "Grapes"];
+    const filtered = data.filter((item) =>
+      item.toLowerCase().includes(query.toLowerCase())
+    );
+    setResults(filtered);
+  };
+
+ 
+  
   return (
     <div className="fixed left-0 top-0 z-50 w-full h-20 bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 py-4 px-8 hidden md:block ">
       <div className="flex items-center justify-between">
@@ -20,13 +36,8 @@ function Header() {
 
         <div className="flex items-center justify-center">
           
-          <Link
-            href="/dashboard/settings"
-            className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
-          >
-            <Settings size={20} />
-            
-          </Link>
+          
+             <SearchBar onSearch={handleSearch} />
         </div>
       </div>
     </div>

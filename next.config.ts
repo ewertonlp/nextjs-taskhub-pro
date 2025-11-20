@@ -4,6 +4,10 @@ const nextConfig: NextConfig = {
   images: {
     // Lista de domínios permitidos para carregamento de imagens externas
     remotePatterns: [
+       {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
       {
         protocol: 'https',
         hostname: 'api.dicebear.com',
