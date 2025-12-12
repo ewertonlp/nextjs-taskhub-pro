@@ -54,14 +54,14 @@ export default function DashboardClient({ user, profile }: any) {
   };
 
   return (
-    <div className="p-6">
-      <div className="bg-slate-50 rounded-lg p-6 border border-slate-200">
+    <div className="p-1 lg:p-4 mt-22 md:mt-4">
+      <div className="bg-slate-50 dark:bg-slate-700 rounded-lg p-6 border border-slate-200 dark:border-slate-500">
         <h1 className="text-2xl">Hi, {user.user_metadata?.name}</h1>
       </div>
 
-      <div className="my-8 px-6 py-2  rounded-lg border border-slate-200">
+      <div className="my-8 px-1 py-2">
         <div className="my-2 flex justify-between items-center">
-          <h2 className="text-xl font-semibold text-slate-700">Tasks</h2>
+          <h2 className="text-xl font-semibold text-slate-700 dark:text-slate-200">Tasks</h2>
           <Link
             href="/dashboard/tasks"
             className="text-sm font-regular text-amber-500 hover:underline transition-all duration-150"

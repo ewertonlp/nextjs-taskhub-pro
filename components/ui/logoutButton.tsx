@@ -26,12 +26,10 @@ export default function LogoutModal() {
   const loading = useSelector((state: RootState) => state.auth.loading);
 
     const handleLogout = async () => {
-    // 1) Fecha o modal e espera a animação
     setOpen(false);
     await new Promise((r) => setTimeout(r, 160));
 
     try {
-      // 2) Dispatch do thunk e espera ele completar (unwrap lança se rejeitado)
       await dispatch(logout()).unwrap?.();
       toast.success("You have been signed out.");
       setTimeout(() => {
@@ -47,15 +45,15 @@ export default function LogoutModal() {
     if (href === "/") {
       return pathname === href;
     }
-    // Para rotas aninhadas, como /dashboard/tasks, verifica se começa com o href
+    
     return pathname === href;
   };
 
   // Função auxiliar para determinar classes do ícone (fundo e cor do texto)
   const getIconClasses = (href) => {
     const activeClasses =
-      "bg-linear-to-br from-black/70 to-black/90 text-amber-300"; // Cor ativa
-    const defaultClasses = "bg-slate-50 border-slate-200 text-amber-500"; // Cor padrão
+      "bg-black/90 dark:bg-amber-500 text-amber-500 dark:text-slate-800"; 
+    const defaultClasses = "bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-500 dark:bg-slate-700 text-amber-500"; 
 
     return `w-10 h-10 p-2 rounded-md border transition-all duration-150 ${
       isActive(href) ? activeClasses : defaultClasses
@@ -63,8 +61,8 @@ export default function LogoutModal() {
   };
 
    const getLinkTextClasses = (href) => {
-    const activeClasses = "text-black/80 font-medium"; // Cor ativa e negrito
-    const defaultClasses = "text-slate-700 font-regular"; // Cor padrão
+    const activeClasses = "text-slate-800 dark:text-slate-300 font-medium"; 
+    const defaultClasses = "text-sm text-slate-700 dark:text-slate-300 font-regular"; 
 
     return `${isActive(href) ? activeClasses : defaultClasses}`;
   };
@@ -96,11 +94,11 @@ export default function LogoutModal() {
             <Button
               onClick={handleLogout}
               disabled={loading}
-              className="bg-red-600 hover:bg-red-700 min-w-[100px]"
+              className="bg-red-500 hover:bg-red-700 min-w-[100px] text-white"
             >
               {loading ? (
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  <div className="w-4 h-4 border-2 border-white text-white border-t-transparent rounded-full animate-spin" />
                   Signing out...
                 </div>
               ) : (

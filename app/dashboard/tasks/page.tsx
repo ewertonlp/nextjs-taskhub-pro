@@ -69,28 +69,29 @@ export default function TasksPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto mt-10 p-6">
-      <h1 className="text-2xl font-semibold mb-4 text-slate-800 dark:text-gray-100">
+    <div className="max-w-7xl mx-auto my-18 md:my-8 lg:p-6 ">
+      <h1 className="text-2xl font-semibold mb-4 text-slate-800 dark:text-slate-200">
         My tasks
       </h1>
 
-      {/* Formulário */}
-      <div className="flex gap-2 mb-6 p-6 bg-slate-50 rounded-lg border border-slate-100">
+      <div className="lg:flex gap-2 space-y-4 mb-6 px-3 py-5 lg:p-6 bg-slate-50 dark:bg-slate-700 rounded-lg border border-slate-200 dark:border-slate-500">
         <Input
           type="text"
           placeholder="Task title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="bg-white dark:bg-slate-600"
+          className="bg-white dark:bg-slate-900 dark:border-slate-500"
         />
         <Input
           placeholder="Description (optional)"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="bg-white dark:bg-slate-600"
+          className="bg-white dark:bg-slate-900 dark:border-slate-500"
         />
 
-        <Button onClick={handleAdd}>Create Task</Button>
+        <Button onClick={handleAdd} className="w-full md:w-auto">
+          Create Task
+        </Button>
       </div>
 
       <ClientOnly>

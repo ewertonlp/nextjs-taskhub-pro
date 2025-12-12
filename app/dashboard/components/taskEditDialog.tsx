@@ -54,7 +54,6 @@ export function TaskEditDialog({
       description: currentDescription,
       status: currentStatus,
     });
-    // 2. Fechar o Modal
     onClose();
   };
 
@@ -70,15 +69,15 @@ export function TaskEditDialog({
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={onClose} >
       <DialogContent className="sm:max-w-[550px]">
         <DialogHeader>
           <DialogTitle className="flex items-center justify-between pr-8">
-            <span className="text-xl">Edit Task</span>
+            <span className="text-xl ">Edit Task</span>
 
             <button
               onClick={handleToggleClick}
-              className="ml-2 flex items-center gap-2  text-gray-500 hover:text-green-600 transition-colors cursor-pointer"
+              className="ml-2 flex items-center gap-2  text-slate-700 dark:text-slate-300 hover:text-green-600 transition-colors cursor-pointer"
             >
               {task.completed ? (
                 <>
@@ -128,7 +127,7 @@ export function TaskEditDialog({
           </div>
         </div>
 
-        <DialogFooter className="flex justify-between items-center pt-8">
+        <DialogFooter className="flex justify-between items-center pt-8 ">
           <Button
             variant="ghost"
             onClick={handleDeleteClick}

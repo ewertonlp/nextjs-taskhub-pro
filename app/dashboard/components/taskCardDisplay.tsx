@@ -37,10 +37,8 @@ export function TaskCardDisplay({ task, onClick }: TaskCardDisplayProps) {
   return (
     <Card
       onClick={onClick}
-      
       className="p-3 mb-2 cursor-pointer bg-white border border-slate-200 hover:border-amber-500 transition-all duration-150 min-h-32"
     >
-        
       <div className="flex justify-between items-start mb-2">
         <p
           className={`font-medium text-md text-gray-900 ${

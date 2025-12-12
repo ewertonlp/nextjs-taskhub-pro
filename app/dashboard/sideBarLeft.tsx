@@ -36,25 +36,25 @@ function SidebarLeft({ user, profile }: any) {
     if (href === "/") {
       return pathname === href;
     }
-    // Para rotas aninhadas, como /dashboard/tasks, verifica se começa com o href
+
     return pathname === href;
   };
 
-  // Função auxiliar para determinar classes do ícone (fundo e cor do texto)
+
   const getIconClasses = (href) => {
     const activeClasses =
-      "bg-linear-to-br from-black/70 to-black/90 text-amber-400"; // Cor ativa
-    const defaultClasses = "bg-slate-50 border-slate-200 text-amber-500"; // Cor padrão
+      "bg-black/90 dark:bg-amber-500 text-amber-500 dark:text-slate-800"; 
+    const defaultClasses = "bg-slate-50 border-slate-200 dark:border-slate-500 dark:bg-slate-700 text-amber-500"; 
 
     return `w-10 h-10 p-2 rounded-md border transition-all duration-150 ${
       isActive(href) ? activeClasses : defaultClasses
     }`;
   };
 
-  // Função auxiliar para determinar classes do link (cor do texto)
+
   const getLinkTextClasses = (href) => {
-    const activeClasses = "text-slate-800 font-medium"; // Cor ativa e negrito
-    const defaultClasses = "text-sm text-slate-700 font-regular"; // Cor padrão
+    const activeClasses = "text-slate-800 dark:text-amber-500 font-medium"; 
+    const defaultClasses = "text-sm text-slate-700 dark:text-slate-300 font-regular"; 
 
     return `${isActive(href) ? activeClasses : defaultClasses}`;
   };
@@ -74,7 +74,7 @@ function SidebarLeft({ user, profile }: any) {
               alt="avatar"
               width={80}
               height={80}
-              className="hidden lg:block rounded-full border-10 border-slate-100 object-cover"
+              className="hidden lg:block rounded-full border-10 border-slate-100 dark:border-slate-600 object-cover"
             />
 
             <div className="hidden lg:block text-center">
@@ -93,7 +93,7 @@ function SidebarLeft({ user, profile }: any) {
               <li className="">
                 <Link
                   href="/dashboard"
-                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <Home size={18} className={getIconClasses("/dashboard")} />
                   <span className={getLinkTextClasses("/dashboard")}>Home</span>
@@ -102,7 +102,7 @@ function SidebarLeft({ user, profile }: any) {
               <li>
                 <Link
                   href="/dashboard/tasks"
-                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <List
                     size={18}
@@ -116,7 +116,7 @@ function SidebarLeft({ user, profile }: any) {
               <li>
                 <Link
                   href="/dashboard/projects"
-                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <FolderKanban
                     size={18}
@@ -130,7 +130,7 @@ function SidebarLeft({ user, profile }: any) {
               <li>
                 <Link
                   href="/dashboard/events"
-                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <CalendarClock
                     size={18}
@@ -145,7 +145,7 @@ function SidebarLeft({ user, profile }: any) {
               <li>
                 <Link
                   href="/dashboard/profile"
-                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <User
                     size={18}
@@ -159,7 +159,7 @@ function SidebarLeft({ user, profile }: any) {
               <li>
                 <Link
                   href="/dashboard/settings"
-                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <Settings
                     size={18}
@@ -180,13 +180,13 @@ function SidebarLeft({ user, profile }: any) {
 
       {/* Mobile bottom bar */}
       <div className="fixed bottom-4 left-0 right-0 z-40 lg:hidden px-4">
-        <div className="bg-white dark:bg-slate-800 shadow-lg p-2 flex gap-2 border border-slate-200 rounded-lg">
+        <div className="bg-white dark:bg-slate-950 shadow-lg p-2 flex gap-2 border border-slate-200 dark:border-slate-500 rounded-lg">
           <nav className="flex-1 w-full">
             <ul className="flex items-center justify-between flex-wrap sm:gap-2 lg:gap-4">
               <li className="">
                 <Link
                   href="/dashboard"
-                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <Home size={18} className={getIconClasses("/dashboard")} />
                   <span className={getLinkTextClasses("/dashboard")}>Home</span>
@@ -195,7 +195,7 @@ function SidebarLeft({ user, profile }: any) {
               <li>
                 <Link
                   href="/dashboard/tasks"
-                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <List
                     size={18}
@@ -209,7 +209,7 @@ function SidebarLeft({ user, profile }: any) {
               <li>
                 <Link
                   href="/dashboard/projects"
-                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <FolderKanban
                     size={18}
@@ -220,10 +220,10 @@ function SidebarLeft({ user, profile }: any) {
                   </span>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="/dashboard/events"
-                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <CalendarClock
                     size={18}
@@ -234,11 +234,11 @@ function SidebarLeft({ user, profile }: any) {
                     Events
                   </span>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   href="/dashboard/profile"
-                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <User
                     size={18}
@@ -252,7 +252,7 @@ function SidebarLeft({ user, profile }: any) {
               <li>
                 <Link
                   href="/dashboard/settings"
-                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <Settings
                     size={18}

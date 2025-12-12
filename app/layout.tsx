@@ -4,6 +4,7 @@ import "./globals.css";
 import StoreProvider from "./store/storeProvider";
 import { Toaster } from "react-hot-toast";
 import InitUser from "./initUser";
+import ThemeWrapper from "@/components/themeWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,16 +31,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <StoreProvider>
-          <InitUser />
-          {children}
-        </StoreProvider>
-        <Toaster
-          toastOptions={{
-            className: "text-md font-semibold",
-            duration: 5000,
-          }}
-        />
+          <StoreProvider>
+        <ThemeWrapper>
+            <InitUser />
+            {children}
+          </ThemeWrapper>
+          </StoreProvider>
+          <Toaster
+            toastOptions={{
+              className: "text-md font-semibold",
+              duration: 5000,
+            }}
+          />
       </body>
     </html>
   );

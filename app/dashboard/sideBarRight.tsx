@@ -60,10 +60,10 @@ function SidebarRight({ user, profile }: any) {
 
   return (
     <>
-      <aside className="fixed right-0 top-20 z-40 hidden lg:w-80 h-screen bg-white dark:bg-slate-800 pr-4 py-6 md:block">
+      <aside className="fixed right-0 top-20 z-40 hidden lg:w-80 h-screen bg-white dark:bg-slate-800 px-2 lg:px-4 py-6 md:block">
         <div className="flex flex-col justify-start items-start h-full">
           {/* Alerts */}
-          <div className="w-full flex flex-col items-center justify-start mb-8 bg-slate-50 rounded-lg border border-slate-200">
+          <div className="w-full flex flex-col items-center justify-start mb-8 rounded-lg ">
             <AlertsCard />
           </div>
 

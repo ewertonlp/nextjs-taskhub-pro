@@ -60,7 +60,6 @@ export function KanbanBoard({
 
   const columns = useMemo(() => {
     if (!tasks || tasks.length === 0) {
-      // Sempre criar novas arrays para evitar referência compartilhada
       return {
         todo: [],
         in_progress: [],
@@ -176,19 +175,19 @@ export function KanbanBoard({
   return (
     <>
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="block xl:flex space-y-6 space-x-6 py-4 overflow-x-auto">
+        <div className="block xl:flex space-y-6 space-x-6 pt-4 pb-20 overflow-x-auto">
           {Object.entries(columns).map(([status, tasks]) => (
             <Droppable droppableId={status} key={status}>
               {(provided) => (
                 <ScrollArea
-                  className="w-96 bg-slate-50 border border-slate-200 rounded-lg p-3 h-[80vh]"
+                  className="w-full bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-500 rounded-lg p-3 h-auto"
                   {...provided.droppableProps}
                   ref={provided.innerRef}
                 >
-                  <h3 className="flex justify-between items-center mb-4 text-lg font-semibold capitalize">
+                  <h3 className="flex justify-between items-center mb-4 text-lg font-normal dark:text-slate-300 text-slate-800 capitalize">
                     {columnTitles[status as Task["status"]]}
 
-                    <span className="p-2 bg-amber-100 text-amber-600 text-xs rounded-full">
+                    <span className="px-2 py-1 bg-amber-100 text-amber-600 dark:bg-amber-600 dark:text-amber-50 text-xs rounded-full">
                       {tasks.length}
                     </span>
                   </h3>
@@ -202,7 +201,7 @@ export function KanbanBoard({
                       >
                         {(provided) => (
                           <Card
-                            className="p-3 mb-4 cursor-pointer bg-white"
+                            className="p-3 mb-4 cursor-pointer bg-white dark:bg-slate-900 dark:border-slate-500"
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             onClick={() => handleCardClick(task)}
@@ -220,7 +219,7 @@ export function KanbanBoard({
                             </div>
                             <div className="">
                               {task.description && (
-                                <p className="text-xs text-gray-600 line-clamp-2">
+                                <p className="text-xs text-gray-700 dark:text-slate-200 line-clamp-2">
                                   {task.description}
                                 </p>
                               )}
