@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 
 const schema = z.object({
   email: z.email(),
-  password: z.string().min(6, "Mínimo de 6 caracteres"),
+  password: z.string().min(6, "At least 6 characters"),
 });
 
 export default function LoginForm() {
@@ -51,7 +51,7 @@ const onSignup = async (data: any) => {
   };
 
   return (
-    <div className=" space-y-4 p-6 bg-white dark:bg-slate-800 rounded-md shadow-md">
+    <div className=" space-y-4 p-6 mx-4 bg-white dark:bg-slate-800 border border-slate-200 rounded-md shadow-md">
       <form onSubmit={handleSubmit(onSubmit)} className=" space-y-4">
         <Input placeholder="Email" {...register("email")} />
         {errors.email && (
@@ -88,9 +88,9 @@ const onSignup = async (data: any) => {
     </div>
         </div>
       </form>
-      <div className="space-y-4">
+      <div className="space-y-4 pt-4">
         <div className="text-center">
-          <p className="text-sm text-gray-500">or</p>
+          <p className="text-sm text-gray-500">Or enter with</p>
         </div>
         <GoogleButton />
       </div>

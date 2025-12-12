@@ -21,14 +21,12 @@ export const AuthService = {
 
   async loginWithGoogle() {
     if (typeof window === "undefined") {
-      // Se estiver no servidor, não deve prosseguir com o redirecionamento baseado em window.location
       console.error(
         "Tentativa de usar loginWithGoogle no servidor. Isso deve ser chamado em um componente cliente."
       );
       return;
     }
 
-    // 1. Definição do URL de Callback APENAS quando 'window' está disponível (no navegador).
     const authCallbackUrl = `${window.location.origin}/auth/callback`;
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
@@ -38,7 +36,7 @@ export const AuthService = {
       console.error("Erro ao iniciar OAuth:", error);
       return;
     }
-    // Redireciona o navegador para a URL de login do Google
+
     window.location.href = data.url;
   },
 

@@ -55,6 +55,7 @@ export function KanbanBoard({
 }: KanbanBoardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const [isLoading, setIsLoading] = useState(false)
   const supabase = createClient();
 
   const columns = useMemo(() => {
@@ -108,9 +109,7 @@ export function KanbanBoard({
     )
       return;
 
-    // **NOTA:** O estado local 'columns' NÃO É MAIS USADO para o DND.
-    // Usamos 'tasks' (prop) para o cálculo, e o Redux fará a atualização visual.
-
+   
     const sourceTasks = columns[sourceStatus];
     const taskToMove = sourceTasks.find((t) => t.id === draggableId);
 
@@ -158,7 +157,7 @@ export function KanbanBoard({
       onUpdateTask(draggableId, { status: newStatus, order: newOrder });
     } catch (error) {
       console.error("Erro ao mover tarefa:", error);
-      // Em caso de falha, o Redux não é atualizado, e a UI reverte.
+      
     }
   };
 
@@ -170,26 +169,26 @@ export function KanbanBoard({
   const handleToggleComplete = (id: string, completed: boolean) => {
     onUpdateTask(id, { completed: !completed });
   };
-  // // --- AQUI que fica o "if (isLoading)" ---
-  // if (isLoading) return <div>Loading tasks...</div>;
 
-  // 3. Renderização
+ 
+  if (isLoading) return <div>Loading tasks...</div>;
+ 
   return (
     <>
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="block lg:flex space-x-6 py-4 overflow-x-auto">
+        <div className="block xl:flex space-y-6 space-x-6 py-4 overflow-x-auto">
           {Object.entries(columns).map(([status, tasks]) => (
             <Droppable droppableId={status} key={status}>
               {(provided) => (
                 <ScrollArea
-                  className="w-96 bg-gray-50 border border-slate-100 rounded-lg p-3 h-[80vh]"
+                  className="w-96 bg-slate-50 border border-slate-200 rounded-lg p-3 h-[80vh]"
                   {...provided.droppableProps}
                   ref={provided.innerRef}
                 >
                   <h3 className="flex justify-between items-center mb-4 text-lg font-semibold capitalize">
                     {columnTitles[status as Task["status"]]}
 
-                    <span className="px-3 py-0.5 bg-amber-100 text-amber-600 text-xs rounded-md">
+                    <span className="p-2 bg-amber-100 text-amber-600 text-xs rounded-full">
                       {tasks.length}
                     </span>
                   </h3>
@@ -203,7 +202,7 @@ export function KanbanBoard({
                       >
                         {(provided) => (
                           <Card
-                            className="px-3 py-4 mb-2 cursor-pointer bg-white"
+                            className="p-3 mb-4 cursor-pointer bg-white"
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             onClick={() => handleCardClick(task)}
@@ -246,7 +245,7 @@ export function KanbanBoard({
         </div>
       </DragDropContext>
 
-      {/* Modal de Edição */}
+    
       <TaskEditDialog
         task={selectedTask}
         isOpen={isModalOpen}

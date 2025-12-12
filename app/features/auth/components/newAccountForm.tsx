@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 
 const schema = z.object({
   email: z.email(),
-  password: z.string().min(6, "Mínimo de 6 caracteres"),
+  password: z.string().min(6, "At least 6 characters"),
 });
 
 export default function NewAccountForm() {
@@ -59,14 +59,14 @@ const onSignup = async (data: any) => {
           <p className="text-red-500 text-sm">{errors.email.message}</p>
         )}
 
-        <Input type="password" placeholder="Senha" {...register("password")} />
+        <Input type="password" placeholder="Password" {...register("password")} />
         {errors.password && (
           <p className="text-red-500 text-sm">{errors.password.message}</p>
         )}
 
         <div className="text-center">
           <a href="" className="text-sm font-medium text-primary hover:text-primary/70 transition durantion-200 ">
-            Esqueceu a senha?
+            Forgot password?
           </a>
         </div>
 
@@ -76,23 +76,23 @@ const onSignup = async (data: any) => {
             disabled={loading}
             className="cursor-pointer w-full"
           >
-            Cadastrar
+            Create Account
           </Button>
          <div className="flex items-center justify-center">
-          <p className="text-sm  text-slate-600 mr-2">Já possui cadastro? </p>
+          <p className="text-sm  text-slate-600 mr-2">Have already an account? </p>
         <a
             
             href="/login"
            className="text-sm font-medium"
         >
-            Faça o login
+            Log in here
         </a>
     </div>
         </div>
       </form>
       <div className="pt-4 space-y-4 border-t border-t-slate-200">
         <div className="text-center">
-          <p className="text-sm text-slate-600">ou </p>
+          <p className="text-sm text-slate-600">Or enter with </p>
         </div>
         <GoogleButton />
       </div>

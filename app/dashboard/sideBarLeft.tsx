@@ -61,7 +61,7 @@ function SidebarLeft({ user, profile }: any) {
 
   return (
     <>
-      <aside className="fixed left-0 top-20 z-40 w-68 h-screen bg-white dark:bg-slate-800 p-6 hidden md:block">
+      <aside className="hidden lg:block fixed left-0 lg:top-20 z-40 lg:w-68 lg:h-screen bg-white dark:bg-slate-800 p-6 ">
         <div className="flex flex-col justify-start items-center h-full">
           {/* User */}
           <div className="flex flex-col items-center justify-center gap-4 mb-8">
@@ -74,10 +74,10 @@ function SidebarLeft({ user, profile }: any) {
               alt="avatar"
               width={80}
               height={80}
-              className="rounded-full border-10 border-slate-100 object-cover"
+              className="hidden lg:block rounded-full border-10 border-slate-100 object-cover"
             />
 
-            <div className="text-center">
+            <div className="hidden lg:block text-center">
               <div className="font-medium">
                 {user.user_metadata?.name || profile?.full_name}
               </div>
@@ -89,11 +89,11 @@ function SidebarLeft({ user, profile }: any) {
 
           {/* Nav */}
           <nav className="flex-1 w-full">
-            <ul className="flex items-center justify-between flex-wrap gap-4">
+            <ul className="flex items-center justify-between flex-wrap sm:gap-2 lg:gap-4">
               <li className="">
                 <Link
                   href="/dashboard"
-                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <Home size={18} className={getIconClasses("/dashboard")} />
                   <span className={getLinkTextClasses("/dashboard")}>Home</span>
@@ -102,7 +102,7 @@ function SidebarLeft({ user, profile }: any) {
               <li>
                 <Link
                   href="/dashboard/tasks"
-                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <List
                     size={18}
@@ -116,7 +116,7 @@ function SidebarLeft({ user, profile }: any) {
               <li>
                 <Link
                   href="/dashboard/projects"
-                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <FolderKanban
                     size={18}
@@ -130,7 +130,7 @@ function SidebarLeft({ user, profile }: any) {
               <li>
                 <Link
                   href="/dashboard/events"
-                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <CalendarClock
                     size={18}
@@ -145,7 +145,7 @@ function SidebarLeft({ user, profile }: any) {
               <li>
                 <Link
                   href="/dashboard/profile"
-                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <User
                     size={18}
@@ -159,7 +159,7 @@ function SidebarLeft({ user, profile }: any) {
               <li>
                 <Link
                   href="/dashboard/settings"
-                  className="flex flex-col items-center gap-1  p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
                 >
                   <Settings
                     size={18}
@@ -178,27 +178,96 @@ function SidebarLeft({ user, profile }: any) {
         </div>
       </aside>
 
-      {/* Mobile bottom bar (minimal) */}
-      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40 md:hidden">
-        <div className="bg-white dark:bg-slate-800 rounded-full shadow-lg p-2 flex gap-2">
-          <Link
-            href="/dashboard"
-            className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-700"
-          >
-            <Home size={18} />
-          </Link>
-          <Link
-            href="/dashboard/tasks"
-            className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-700"
-          >
-            <List size={18} />
-          </Link>
-          <button
-            onClick={handleLogout}
-            className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-700"
-          >
-            <LogOut size={18} />
-          </button>
+      {/* Mobile bottom bar */}
+      <div className="fixed bottom-4 left-0 right-0 z-40 lg:hidden px-4">
+        <div className="bg-white dark:bg-slate-800 shadow-lg p-2 flex gap-2 border border-slate-200 rounded-lg">
+          <nav className="flex-1 w-full">
+            <ul className="flex items-center justify-between flex-wrap sm:gap-2 lg:gap-4">
+              <li className="">
+                <Link
+                  href="/dashboard"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                >
+                  <Home size={18} className={getIconClasses("/dashboard")} />
+                  <span className={getLinkTextClasses("/dashboard")}>Home</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/dashboard/tasks"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                >
+                  <List
+                    size={18}
+                    className={getIconClasses("/dashboard/tasks")}
+                  />
+                  <span className={getLinkTextClasses("/dashboard/tasks")}>
+                    Tasks
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/dashboard/projects"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                >
+                  <FolderKanban
+                    size={18}
+                    className={getIconClasses("/dashboard/projects")}
+                  />
+                  <span className={getLinkTextClasses("/dashboard/projects")}>
+                    Projects
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/dashboard/events"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                >
+                  <CalendarClock
+                    size={18}
+                    className={getIconClasses("/dashboard/events")}
+                  />
+
+                  <span className={getLinkTextClasses("/dashboard/events")}>
+                    Events
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/dashboard/profile"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                >
+                  <User
+                    size={18}
+                    className={getIconClasses("/dashboard/profile")}
+                  />
+                  <span className={getLinkTextClasses("/dashboard/profile")}>
+                    Profile
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/dashboard/settings"
+                  className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150"
+                >
+                  <Settings
+                    size={18}
+                    className={getIconClasses("/dashboard/settings")}
+                  />
+                  <span className={getLinkTextClasses("/dashboard/profile")}>
+                    Settings
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <LogoutModal />
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </>

@@ -10,8 +10,8 @@ export default function LoginPage() {
         <LoginForm />
       </div>
 
-      <div className='w-full h-screen bg-white flex justify-center items-center'>
-        <div>
+      <div className='hidden md:flex h-screen bg-white justify-center items-center'>
+        <div className='text-center'>
           <h2 className='text-7xl font-semibold text-slate-800'>TaskHub Pro</h2>
         </div>
 

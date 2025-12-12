@@ -1,4 +1,3 @@
-// app/dashboard/layout.tsx
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import Header from "./components/header";
@@ -27,20 +26,13 @@ export default async function DashboardLayout({ children }: { children: React.Re
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <Header />
-      {/* Sidebar (client) recebe user + profile */}
       <SidebarLeft user={user} profile={profile} />
-
-      {/* Main content area (empurrado para direita da sidebar) */}
-      <main className="ml-68 md:ml-68 mr-auto md:mr-[350px] p-6 transition-all">
-        {/* Topbar (opcional) */}
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-semibold">Dashboard</h2>
-        </div>
-
-        {/* Conteúdo das páginas filhas */}
+      <main className="lg:ml-68 mr-auto lg:mr-[300px] md:mt-16 p-6 transition-all">
         <div>{children}</div>
       </main>
+      <div className="hidden xl:block">
       <SidebarRight />
+      </div>
     </div>
   );
 }

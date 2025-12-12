@@ -55,12 +55,12 @@ export default function DashboardClient({ user, profile }: any) {
 
   return (
     <div className="p-6">
-      <div className="bg-slate-50 rounded-lg p-6 border border-slate-100">
+      <div className="bg-slate-50 rounded-lg p-6 border border-slate-200">
         <h1 className="text-2xl">Hi, {user.user_metadata?.name}</h1>
       </div>
 
-      <div className="my-8 px-6 py-4  rounded-lg border border-slate-100">
-        <div className="my-4 flex justify-between items-center">
+      <div className="my-8 px-6 py-2  rounded-lg border border-slate-200">
+        <div className="my-2 flex justify-between items-center">
           <h2 className="text-xl font-semibold text-slate-700">Tasks</h2>
           <Link
             href="/dashboard/tasks"
@@ -76,7 +76,7 @@ export default function DashboardClient({ user, profile }: any) {
           </div>
         ) : tasks.length === 0 ? (
           <p className="text-center text-slate-500 dark:text-slate-400">
-            Nenhuma tarefa encontrada
+            No tasks to show
           </p>
         ) : (
           <>
