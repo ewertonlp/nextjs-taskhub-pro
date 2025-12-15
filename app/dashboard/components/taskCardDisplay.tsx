@@ -1,7 +1,7 @@
-// components/TaskCardDisplay.tsx
+"use client"
 import { Card } from "@/components/ui/card";
 
-// Tipos de dados (ajuste se necessário)
+// Tipos de dados 
 type Task = {
   id: string;
   title: string;
@@ -54,7 +54,7 @@ export function TaskCardDisplay({ task, onClick }: TaskCardDisplayProps) {
         </span>
       </div>
 
-      {/* Descrição */}
+    
       {task.description && (
         <p className="text-sm text-gray-500 mt-1 line-clamp-3">
           {task.description}

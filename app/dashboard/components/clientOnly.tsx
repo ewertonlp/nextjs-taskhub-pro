@@ -16,10 +16,8 @@ export function ClientOnly({ children }: ClientOnlyProps) {
   }, []);
 
   if (!hasMounted) {
-    // Durante a renderização inicial no servidor (SSR), renderiza um placeholder vazio ou um loader
     return null;
   }
 
-  // Apenas no cliente, após a montagem, renderiza os componentes DND
   return <>{children}</>;
 }

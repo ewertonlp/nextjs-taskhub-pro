@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import React from "react";
 import { useAppDispatch } from "../store/hooks";
 import { AppDispatch } from "../store/store";
 import { logout } from "../features/auth/authSlice";
@@ -12,11 +11,9 @@ import {
   FolderKanban,
   Home,
   List,
-  LogOut,
   Settings,
   User,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import LogoutModal from "@/components/ui/logoutButton";
 
 function SidebarLeft({ user, profile }: any) {

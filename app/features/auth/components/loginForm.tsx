@@ -51,7 +51,14 @@ const onSignup = async (data: any) => {
   };
 
   return (
-    <div className=" space-y-4 p-6 mx-4 bg-white dark:bg-slate-800 border border-slate-200 rounded-md shadow-md">
+    <div className=" space-y-6 p-6 mx-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-500 rounded-md shadow-md">
+      <div className="space-y-6 pt-4">
+        <GoogleButton />
+        <div className="text-center">
+          <p className="text-sm text-gray-500 dark:text-slate-300">Or enter with</p>
+        </div>
+      </div>
+      
       <form onSubmit={handleSubmit(onSubmit)} className=" space-y-4">
         <Input placeholder="Email" {...register("email")} />
         {errors.email && (
@@ -78,22 +85,17 @@ const onSignup = async (data: any) => {
             Go to Dashboard
           </Button>
          <div className="flex items-center justify-center">
-          <p className="text-sm font-medium text-slate-500 pr-2">Don´t have account? {' '} </p>
+          <p className="text-sm font-medium text-slate-500 dark:text-slate-300 pr-2">Don´t have account? {' '} </p>
         <a
             href="/newAccount"
-            className="text-sm font-medium text-slate-800 hover:text-slate-900"
+            className="text-sm font-medium text-slate-800 hover:text-slate-900 dark:text-slate-50"
         >
             Create new here!
         </a>
     </div>
         </div>
       </form>
-      <div className="space-y-4 pt-4">
-        <div className="text-center">
-          <p className="text-sm text-gray-500">Or enter with</p>
-        </div>
-        <GoogleButton />
-      </div>
+      
     </div>
   );
 }

@@ -15,7 +15,6 @@ import {
   LogOut,
   User,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import AlertsCard from "./components/alertsCard";
 
 function SidebarRight({ user, profile }: any) {
@@ -35,7 +34,6 @@ function SidebarRight({ user, profile }: any) {
     if (href === "/") {
       return pathname === href;
     }
-    // Para rotas aninhadas, como /dashboard/tasks, verifica se começa com o href
     return pathname === href;
   };
 
@@ -49,11 +47,10 @@ function SidebarRight({ user, profile }: any) {
       isActive(href) ? activeClasses : defaultClasses
     }`;
   };
-
-  // Função auxiliar para determinar classes do link (cor do texto)
+  
   const getLinkTextClasses = (href) => {
-    const activeClasses = "text-black/80 font-medium"; // Cor ativa e negrito
-    const defaultClasses = "text-slate-700 font-regular"; // Cor padrão
+    const activeClasses = "text-black/80 font-medium"; 
+    const defaultClasses = "text-slate-700 font-regular"; 
 
     return `${isActive(href) ? activeClasses : defaultClasses}`;
   };
@@ -62,7 +59,6 @@ function SidebarRight({ user, profile }: any) {
     <>
       <aside className="fixed right-0 top-20 z-40 hidden lg:w-80 h-screen bg-white dark:bg-slate-800 px-2 lg:px-4 py-6 md:block">
         <div className="flex flex-col justify-start items-start h-full">
-          {/* Alerts */}
           <div className="w-full flex flex-col items-center justify-start mb-8 rounded-lg ">
             <AlertsCard />
           </div>

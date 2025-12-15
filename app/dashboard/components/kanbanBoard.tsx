@@ -19,22 +19,19 @@ import {
 } from "@/types/tasks";
 import { TaskEditDialog } from "./taskEditDialog";
 
-// Funções Helpers para Ordenação Otimizada (Gapped Integers)
 const calculateNewOrder = (tasks: Task[], destinationIndex: number): number => {
   const previousTask = tasks[destinationIndex - 1];
   const nextTask = tasks[destinationIndex];
 
-  // 1. Início da lista
+
   if (destinationIndex === 0) {
     return nextTask ? nextTask.order / 2 : 1000;
   }
 
-  // 2. Fim da lista
   if (destinationIndex === tasks.length - 1) {
     return previousTask.order + 1000;
   }
 
-  // 3. Meio da lista
   if (previousTask && nextTask) {
     return (previousTask.order + nextTask.order) / 2;
   }
@@ -72,21 +69,18 @@ export function KanbanBoard({
       new Map(tasks.map((t) => [t.id, t])).values()
     );
 
-    // Evita referências compartilhadas com initialColumns
     const newColumns: Columns = {
       todo: [],
       in_progress: [],
       done: [],
     };
 
-    // Distribui as tasks nas colunas corretas
     uniqueTasks.forEach((task) => {
       if (task.status in newColumns) {
         newColumns[task.status].push(task);
       }
     });
 
-    //  Ordena as tasks dentro de cada coluna
     (Object.keys(newColumns) as TaskStatus[]).forEach((status) => {
       newColumns[status].sort((a, b) => a.order - b.order);
     });
@@ -113,46 +107,40 @@ export function KanbanBoard({
     const taskToMove = sourceTasks.find((t) => t.id === draggableId);
 
     if (!taskToMove) return;
-
-    // Simulação da nova estrutura de destino para cálculo de order
     const updatedDestinationTasks = [...columns[destinationStatus]];
 
-    // Se o item mudou de coluna, removemos da fonte
     if (sourceStatus !== destinationStatus) {
-      // Removemos o item da posição original (apenas na simulação)
+     
       const taskIndex = sourceTasks.findIndex((t) => t.id === draggableId);
       if (taskIndex !== -1) {
-        // Clona e remove da lista de origem (apenas para cálculo, não afeta o estado)
+ 
       }
     } else {
-      // Move dentro da mesma lista (apenas na simulação)
+      
       const [removed] = updatedDestinationTasks.splice(source.index, 1);
       updatedDestinationTasks.splice(destination.index, 0, removed);
     }
 
-    // Insere o item movido na posição de destino para cálculo da nova ordem
+  
     updatedDestinationTasks.splice(destination.index, 0, {
       ...taskToMove,
       status: destinationStatus,
     });
 
-    // ✅ 2. Cálculo da Nova Ordem Otimizada
     const newOrder = calculateNewOrder(
       updatedDestinationTasks,
       destination.index
     );
     const newStatus = destinationStatus;
 
-    // ✅ 3. Atualização no Supabase e Redux
+    //  Atualização no Supabase e Redux
     try {
-      // 3a. Update no Supabase
+
       await supabase
         .from("tasks")
         .update({ status: newStatus, order: newOrder })
         .eq("id", draggableId)
         .select();
-
-      // 3b. Update no Redux (para atualização visual imediata)
       onUpdateTask(draggableId, { status: newStatus, order: newOrder });
     } catch (error) {
       console.error("Erro ao mover tarefa:", error);

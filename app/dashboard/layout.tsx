@@ -15,8 +15,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
   if (!user) {
     redirect("/login");
   }
-
-  // pega info do perfil (opcional)
+ 
   const { data: profile } = await supabase
     .from("profiles")
     .select("id, full_name, avatar_url")

@@ -10,9 +10,12 @@ export default function LoginPage() {
         <LoginForm />
       </div>
 
-      <div className='hidden md:flex h-screen bg-white justify-center items-center'>
+      <div className='hidden md:flex h-screen bg-white dark:bg-slate-800 justify-center items-center'>
         <div className='text-center'>
-          <h2 className='text-7xl font-semibold text-slate-800'>TaskHub Pro</h2>
+          <h2 className='text-7xl font-semibold text-slate-800 dark:text-slate-300'>TaskHub Pro</h2>
+          <div className="text-2xl text-gray-500 dark:text-gray-300">
+              Organize your work
+            </div>
         </div>
 
       </div>

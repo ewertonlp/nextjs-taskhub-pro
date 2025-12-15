@@ -52,7 +52,7 @@ const onSignup = async (data: any) => {
   };
 
   return (
-    <div className="space-y-4 p-6 bg-white dark:bg-slate-800 rounded-md shadow-md">
+    <div className="space-y-4 p-6 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-500 rounded-md shadow-md">
       <form onSubmit={handleSubmit(onSignup)} className=" space-y-4">
         <Input placeholder="Email" {...register("email")} />
         {errors.email && (
@@ -79,7 +79,7 @@ const onSignup = async (data: any) => {
             Create Account
           </Button>
          <div className="flex items-center justify-center">
-          <p className="text-sm  text-slate-600 mr-2">Have already an account? </p>
+          <p className="text-sm  text-slate-500 dark:text-slate-300  mr-2">Have already an account? </p>
         <a
             
             href="/login"
@@ -90,9 +90,9 @@ const onSignup = async (data: any) => {
     </div>
         </div>
       </form>
-      <div className="pt-4 space-y-4 border-t border-t-slate-200">
+      <div className="pt-4 space-y-4 border-t border-t-slate-200 dark:border-t-slate-500">
         <div className="text-center">
-          <p className="text-sm text-slate-600">Or enter with </p>
+          <p className="text-sm text-slate-500 dark:text-slate-300">Or enter with </p>
         </div>
         <GoogleButton />
       </div>

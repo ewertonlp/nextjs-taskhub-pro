@@ -1,4 +1,3 @@
-// components/TaskEditDialog.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -11,10 +10,29 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle2, Circle, Trash2 } from "lucide-react";
 import { Task, TaskStatus } from "@/types/tasks";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface TaskEditDialogProps {
   task: Task | null;
@@ -48,7 +66,7 @@ export function TaskEditDialog({
   if (!task) return null;
 
   const handleSave = () => {
-    // 1. Atualização do Supabase (Ação no Redux)
+    // Atualização do Supabase (Ação no Redux)
     onSave(task.id, {
       title: currentTitle,
       description: currentDescription,
@@ -69,7 +87,7 @@ export function TaskEditDialog({
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose} >
+    <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[550px]">
         <DialogHeader>
           <DialogTitle className="flex items-center justify-between pr-8">
@@ -115,27 +133,73 @@ export function TaskEditDialog({
 
           <div className="space-y-2">
             <label className="text-sm font-medium mr-4">Status</label>
-            <select
+            <Select
               value={currentStatus}
-              onChange={(e) => setCurrentStatus(e.target.value as TaskStatus)}
-              className="px-4 py-2 border rounded-md"
+              onValueChange={(value) => setCurrentStatus(value as TaskStatus)}
             >
-              <option value="todo">To do</option>
-              <option value="in_progress">In progress</option>
-              <option value="done">Done</option>
-            </select>
+              <SelectTrigger className="w-[200px] rounded-md">
+                <SelectValue placeholder="Select status" />
+              </SelectTrigger>
+
+              <SelectContent className="rounded-md shadow-lg">
+                <SelectItem value="todo" className="rounded-md">
+                  To do
+                </SelectItem>
+                <SelectItem value="in_progress" className="rounded-md">
+                  In progress
+                </SelectItem>
+                <SelectItem value="done" className="rounded-md">
+                  Done
+                </SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
 
         <DialogFooter className="flex justify-between items-center pt-8 ">
-          <Button
+          {/* <Button
             variant="ghost"
             onClick={handleDeleteClick}
             className="text-red-500 hover:bg-red-50"
           >
             <Trash2 className="w-4 h-4 mr-2" />
             Delete
-          </Button>
+          </Button> */}
+
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="ghost" className="text-red-500 hover:bg-red-50">
+                <Trash2 className="w-4 h-4 mr-2" />
+                Delete
+              </Button>
+            </AlertDialogTrigger>
+
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Confirm delete</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. The task
+                  <strong> {task.title} </strong>
+                  will be permanently removed.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction
+                  className="bg-red-500 hover:bg-red-600 decoration-destructive"
+                  variant="destructive"
+                  onClick={() => {
+                    onDelete(task.id);
+                    onClose();
+                  }}
+                >
+                  Yes, delete
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+
           <div>
             <Button variant="outline" onClick={onClose} className="mr-2">
               Cancel
