@@ -5,9 +5,9 @@ import { FaBell } from "react-icons/fa6";
 import { IoSearchOutline } from "react-icons/io5";
 
 function Header() {
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<string[]>([]);
 
-  const handleSearch = (query) => {
+  const handleSearch = (query: string) => {
     const data = ["Apple", "Banana", "Orange", "Mango", "Grapes"];
     const filtered = data.filter((item) =>
       item.toLowerCase().includes(query.toLowerCase())
