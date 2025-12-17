@@ -3,13 +3,18 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
-import { login, signup } from "../authSlice";
+import { login } from "../authSlice";
 import { z } from "zod";
 import { Input } from "../../../../components/ui/input";
 import { Button } from "../../../../components/ui/button";
 import toast from "react-hot-toast";
 import GoogleButton from "./googleButton";
 import { useRouter } from "next/navigation";
+
+interface LoginCredentials {
+  email: string;
+  password: string;
+}
 
 const schema = z.object({
   email: z.email(),
@@ -29,26 +34,16 @@ export default function LoginForm() {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: LoginCredentials) => {
     try {
       await dispatch(login(data)).unwrap();
       toast.success("Login success! Welcome back!");
       router.push("/dashboard");
-    } catch (error: any) {
-        toast.error(error.message);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Login failed';
+        toast.error(message);
     }
 };
-
-const onSignup = async (data: any) => {
-    try {
-        await dispatch(signup(data)).unwrap();
-        toast.success("Conta criada");
-        router.push("/dashboard");
-    } catch (error) {
-        toast.error(error.message);
-        console.log('Cadastro realizado com sucesso no supabase', error)
-    }
-  };
 
   return (
     <div className=" space-y-6 p-6 mx-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-500 rounded-md shadow-md">

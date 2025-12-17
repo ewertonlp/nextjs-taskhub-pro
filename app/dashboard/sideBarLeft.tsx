@@ -1,9 +1,6 @@
 "use client";
 
-import { useRouter, usePathname } from "next/navigation";
-import { useAppDispatch } from "../store/hooks";
-import { AppDispatch } from "../store/store";
-import { logout } from "../features/auth/authSlice";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -16,20 +13,37 @@ import {
 } from "lucide-react";
 import LogoutModal from "@/components/ui/logoutButton";
 
-function SidebarLeft({ user, profile }: any) {
-  const router = useRouter();
-  const dispatch = useAppDispatch() as unknown as AppDispatch;
+interface User {
+  id: string;
+  email: string;
+  user_metadata: {
+    name?: string;
+    avatar_url?: string;
+  };
+}
+
+interface Profile {
+  full_name?: string;
+  avatar_url?: string;
+}
+
+interface SidebarProps {
+  user: User;
+  profile: Profile | null;
+}
+
+function SidebarLeft({ user, profile }: SidebarProps) {
   const pathname = usePathname();
 
-  const handleLogout = async () => {
-    try {
-      await dispatch(logout()).unwrap?.();
-    } catch (error) {
-      console.log("Logout error", error);
-    }
-  };
+  // const handleLogout = async () => {
+  //   try {
+  //     await dispatch(logout()).unwrap?.();
+  //   } catch (error) {
+  //     console.log("Logout error", error);
+  //   }
+  // };
 
-  const isActive = (href) => {
+  const isActive = (href: string) => {
     if (href === "/") {
       return pathname === href;
     }
@@ -38,7 +52,7 @@ function SidebarLeft({ user, profile }: any) {
   };
 
 
-  const getIconClasses = (href) => {
+  const getIconClasses = (href: string) => {
     const activeClasses =
       "bg-black/90 dark:bg-amber-500 text-amber-500 dark:text-slate-800"; 
     const defaultClasses = "bg-slate-50 border-slate-200 dark:border-slate-500 dark:bg-slate-700 text-amber-500"; 
@@ -49,7 +63,7 @@ function SidebarLeft({ user, profile }: any) {
   };
 
 
-  const getLinkTextClasses = (href) => {
+  const getLinkTextClasses = (href: string) => {
     const activeClasses = "text-slate-800 dark:text-amber-500 font-medium"; 
     const defaultClasses = "text-sm text-slate-700 dark:text-slate-300 font-regular"; 
 

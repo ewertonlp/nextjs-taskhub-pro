@@ -11,60 +11,36 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
-import { useRouter, usePathname  } from "next/navigation";
+import { useRouter} from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/app/features/auth/authSlice";
 import { AppDispatch, RootState } from "@/app/store/store";
 import toast from "react-hot-toast";
 
+
+
 export default function LogoutModal() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
-  const pathname = usePathname();
-
   const loading = useSelector((state: RootState) => state.auth.loading);
 
-    const handleLogout = async () => {
-    setOpen(false);
-    await new Promise((r) => setTimeout(r, 160));
 
+
+  const handleLogout = async () => {
     try {
-      await dispatch(logout()).unwrap?.();
-      toast.success("You have been signed out.");
-      setTimeout(() => {
-        router.push("/login");
-      }, 350);
-    } catch (err: any) {
-      console.error("Logout error:", err);
-      toast.error(err?.message ?? "Failed to sign out. Try again.");
+      await dispatch(logout()).unwrap();
+      setOpen(false);
+      router.push("/login");
+    } catch (error: unknown) {
+      console.error("Logout error:", error);
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Failed to sign out. Try again.";
+      toast.error(message);
+      setOpen(false)
     }
-  };
-
-   const isActive = (href) => {
-    if (href === "/") {
-      return pathname === href;
-    }
-    
-    return pathname === href;
-  };
-
-  // Função auxiliar para determinar classes do ícone (fundo e cor do texto)
-  const getIconClasses = (href) => {
-    const activeClasses =
-      "bg-black/90 dark:bg-amber-500 text-amber-500 dark:text-slate-800"; 
-    const defaultClasses = "bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-500 dark:bg-slate-700 text-amber-500"; 
-
-    return `w-10 h-10 p-2 rounded-md border transition-all duration-150 ${
-      isActive(href) ? activeClasses : defaultClasses
-    }`;
-  };
-
-   const getLinkTextClasses = (href) => {
-    const activeClasses = "text-slate-800 dark:text-slate-300 font-medium"; 
-    const defaultClasses = "text-sm text-slate-700 dark:text-slate-300 font-regular"; 
-
-    return `${isActive(href) ? activeClasses : defaultClasses}`;
   };
 
   return (
@@ -73,8 +49,8 @@ export default function LogoutModal() {
         onClick={() => setOpen(true)}
         className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-150 cursor-pointer"
       >
-        <LogOut size={18} className={getIconClasses("/dashboard/logout")}/>
-        <span className={getLinkTextClasses("/dashboard/logout")}>Logout</span>
+        <LogOut size={18} className="w-10 h-10 p-2 rounded-md border text-amber-500 dark:bg-slate-700 dark:border-slate-500" />
+        <span className="text-sm text-slate-700 dark:text-slate-300">Logout</span>
       </button>
 
       <Dialog open={open} onOpenChange={setOpen}>
@@ -87,14 +63,18 @@ export default function LogoutModal() {
           </DialogHeader>
 
           <DialogFooter className="mt-4 flex justify-end gap-3">
-            <Button variant="outline" onClick={() => setOpen(false)} disabled={loading}>
+            <Button
+              variant="outline"
+              onClick={() => setOpen(false)}
+              disabled={loading}
+            >
               Cancel
             </Button>
 
             <Button
               onClick={handleLogout}
               disabled={loading}
-              className="bg-red-500 hover:bg-red-700 min-w-[100px] text-white"
+              className="bg-red-500 hover:bg-red-700 dark:bg-red-400 dark:hover:bg-red-500 min-w-[100px] text-white dark:text-slate-900"
             >
               {loading ? (
                 <div className="flex items-center gap-2">

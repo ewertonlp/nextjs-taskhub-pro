@@ -41,9 +41,14 @@ export const AuthService = {
   },
 
   async logout() {
+  try {
     const { error } = await supabase.auth.signOut();
-    if (error) throw error;
-  },
+    if (error) throw error; // ← Rejeita se erro
+    return { success: true };
+  } catch (error) {
+    throw error; // ← Propaga erro pro Redux
+  }
+},
 
   async getCurrentUser() {
     const { data } = await supabase.auth.getUser();

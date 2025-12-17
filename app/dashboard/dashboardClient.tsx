@@ -2,7 +2,7 @@
 
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store/store";
-import { logout } from "../features/auth/authSlice";
+// import { logout } from "../features/auth/authSlice";
 import router from "next/router";
 import { useAppSelector } from "../store/hooks";
 import { Loader2 } from "lucide-react";
@@ -31,10 +31,10 @@ export default function DashboardClient({ user, profile }: any) {
     }
   }, [dispatch, user]);
 
-  const handleLogout = async () => {
-    dispatch(logout());
-    router.push("login");
-  };
+  // const handleLogout = async () => {
+  //   dispatch(logout());
+  //   router.push("login");
+  // };
 
   const handleCardClick = (task: Task) => {
     setIsModalOpen(true);
