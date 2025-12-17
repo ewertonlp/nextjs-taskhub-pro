@@ -9,27 +9,18 @@ import {
   Home,
   List,
   Settings,
-  User,
 } from "lucide-react";
+import {FaRegUser} from 'react-icons/fa'
 import LogoutModal from "@/components/ui/logoutButton";
-
-interface User {
-  id: string;
-  email: string;
-  user_metadata: {
-    name?: string;
-    avatar_url?: string;
-  };
-}
-
-interface Profile {
-  full_name?: string;
-  avatar_url?: string;
-}
+import type { User } from "@supabase/supabase-js";
 
 interface SidebarProps {
   user: User;
-  profile: Profile | null;
+  profile: {
+    id: string;
+    full_name: string | null;
+    avatar_url: string | null;
+  } | null;
 }
 
 function SidebarLeft({ user, profile }: SidebarProps) {
@@ -93,7 +84,7 @@ function SidebarLeft({ user, profile }: SidebarProps) {
                 {user.user_metadata?.name || profile?.full_name}
               </div>
               <div className="text-xs text-gray-500 dark:text-gray-400">
-                {user.email}
+                <p>{user.email ?? "No email available"}</p>
               </div>
             </div>
           </div>
@@ -158,7 +149,7 @@ function SidebarLeft({ user, profile }: SidebarProps) {
                   href="/dashboard/profile"
                   className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-all duration-150"
                 >
-                  <User
+                  <FaRegUser
                     size={18}
                     className={getIconClasses("/dashboard/profile")}
                   />
@@ -251,7 +242,7 @@ function SidebarLeft({ user, profile }: SidebarProps) {
                   href="/dashboard/profile"
                   className="flex flex-col items-center gap-1 p-2 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-all duration-150"
                 >
-                  <User
+                  <FaRegUser
                     size={18}
                     className={getIconClasses("/dashboard/profile")}
                   />
