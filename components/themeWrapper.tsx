@@ -16,6 +16,7 @@ export default function ThemeWrapper({ children }: {children: React.ReactNode}) 
     } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       dispatch(setTheme("dark"));
     }
+     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, [dispatch]);
 

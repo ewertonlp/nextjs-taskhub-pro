@@ -1,7 +1,6 @@
 "use client"
 import { Card } from "@/components/ui/card";
 
-// Tipos de dados 
 type Task = {
   id: string;
   title: string;
