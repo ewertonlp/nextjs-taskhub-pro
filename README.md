@@ -5,14 +5,13 @@ Aplicação web moderna para gerenciamento de tarefas, desenvolvida com Next.js,
 🔗 Demo: [https://seuprojeto.vercel.app](https://nextjs-taskhub-pro.vercel.app/)
 
 
-✨ Funcionalidades
+## Funcionalidades
 
 ✅ Autenticação com Email e Senha
 🔐 Login social com Google (Supabase Auth)
 📝 CRUD completo de tarefas
 📌 Edição de título, descrição e status
-<img width="512" height="512" alt="image" src="https://github.com/user-attachments/assets/fe6cc9c2-1564-442d-94a5-1c821eba8f04" />
-
+    Drag and Drop dos cards das tarefas
 ✔️ Marcar tarefas como concluídas
 🗑️ Exclusão com confirmação (AlertDialog – shadcn/ui)
 🌙 Tema Dark / Light
