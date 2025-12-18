@@ -5,25 +5,25 @@ Aplicação web moderna para gerenciamento de tarefas, desenvolvida com Next.js,
 🔗 Demo: [https://taskhub-pro.vercel.app](https://nextjs-taskhub-pro.vercel.app/)
 
 
+
 ## Funcionalidades
 
-✅ Autenticação com Email e Senha
+- Autenticação com Email e Senha
 
-🔐 Login social com Google (Supabase Auth)
+- Login social com Google (Supabase Auth)
 
-📝 CRUD completo de tarefas
+- CRUD completo de tarefas
 
-📌 Edição de título, descrição e status
+- Edição de título, descrição e status
 
-    Drag and Drop dos cards das tarefas
+- Drag and Drop dos cards das tarefas
     
-✔️ Marcar tarefas como concluídas
+- Marcar tarefas como concluídas
 
-🗑️ Exclusão com confirmação (AlertDialog – shadcn/ui)
+- Tema Dark / Light
 
-🌙 Tema Dark / Light
+- Layout responsivo
 
-📱 Layout responsivo
 
 
 ## Tecnologias Utilizadas
@@ -34,30 +34,45 @@ Aplicação web moderna para gerenciamento de tarefas, desenvolvida com Next.js,
 
 - TypeScript
 
-- Supabase
-
-- Google OAuth
+- Supabase (Autenticação e Gestão das Tarafas)
 
 - Shadcn/ui
 
 - Tailwind CSS
 
 
-## Getting Started
 
+## Decisões Técnicas
+
+- Uso do App Router para aproveitar a arquitetura moderna do Next.js
+
+- Autenticação feita diretamente pelo Supabase Auth, sem backend próprio
+
+- Componentes reutilizáveis com shadcn/ui
+
+- Gerenciamento de estado simples e previsível
+
+- Foco em código limpo, legível e organizado
+
+
+## Getting Started
 
 You need to set up your project in [`Supabase`](https://supabase.com/dashboard/sign-in?returnTo=%2Forganizations) To log in via Google OAuth, you also need to create a project in the [`Google Cloud Console`](https://console.cloud.google.com/), and then configure the environment variables (create a .env.local file).
 
-## Environment Variables
+## Variáveis de Ambiente
+
+Crie um arquivo .env.local na raiz do projeto:
 
 ```dotenv
 NEXT_PUBLIC_SUPABASE_URL=https:Your Supabase url project
 NEXT_PUBLIC_SUPABASE_ANON_KEY=Your Supabase Anon Key
-SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_SECRET="<client-secret>"
 ```
+⚠️ As chaves públicas do Supabase são seguras para uso no frontend.
+Segredos sensíveis não são expostos no repositório.
 
 
-First, run the development server:
+
+Execute o servidor de desenvolvimento:
 
 ```bash
 npm run dev
@@ -69,7 +84,22 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse [http://localhost:3000](http://localhost:3000).
+
+
+
+## Objetivo do Projeto
+
+Este projeto foi desenvolvido com foco em:
+
+- Consolidar conhecimentos em Next.js e TailwindCSS
+
+- Praticar integração com Supabase
+
+- Criar um projeto real para portfólio profissional
+
+
+
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
