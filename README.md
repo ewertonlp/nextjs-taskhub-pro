@@ -116,8 +116,11 @@ Este projeto foi desenvolvido com foco em:
 ## 📬 Contato
 
 👤 Ewerton Lopes Pereira
+
 💼 Frontend Developer
+
 🔗 LinkedIn: [https://linkedin.com/in/ewerton-lopes-pereira](https://www.linkedin.com/in/ewerton-lopes-pereira/)
+
 📱 [WhatsApp](https://wa.me/5511973291913)
 
 
