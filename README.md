@@ -2,20 +2,46 @@
 
 Aplicação web moderna para gerenciamento de tarefas, desenvolvida com Next.js, TypeScript e Supabase, com foco em boas práticas de frontend, autenticação segura e experiência do usuário.
 
-🔗 Demo: [https://seuprojeto.vercel.app](https://nextjs-taskhub-pro.vercel.app/)
+🔗 Demo: [https://taskhub-pro.vercel.app](https://nextjs-taskhub-pro.vercel.app/)
 
 
 ## Funcionalidades
 
 ✅ Autenticação com Email e Senha
+
 🔐 Login social com Google (Supabase Auth)
+
 📝 CRUD completo de tarefas
+
 📌 Edição de título, descrição e status
+
     Drag and Drop dos cards das tarefas
+    
 ✔️ Marcar tarefas como concluídas
+
 🗑️ Exclusão com confirmação (AlertDialog – shadcn/ui)
+
 🌙 Tema Dark / Light
+
 📱 Layout responsivo
+
+
+## Tecnologias Utilizadas
+
+- Next.js (App Router)
+
+- Redux
+
+- TypeScript
+
+- Supabase
+
+- Google OAuth
+
+- Shadcn/ui
+
+- Tailwind CSS
+
 
 ## Getting Started
 
