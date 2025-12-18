@@ -1,8 +1,22 @@
 # TaskHub Pro 
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
 Aplicação web moderna para gerenciamento de tarefas, desenvolvida com Next.js, TypeScript e Supabase, com foco em boas práticas de frontend, autenticação segura e experiência do usuário.
+
+🔗 Demo: [https://seuprojeto.vercel.app](https://nextjs-taskhub-pro.vercel.app/)
+
+
+✨ Funcionalidades
+
+✅ Autenticação com Email e Senha
+🔐 Login social com Google (Supabase Auth)
+📝 CRUD completo de tarefas
+📌 Edição de título, descrição e status
+<img width="512" height="512" alt="image" src="https://github.com/user-attachments/assets/fe6cc9c2-1564-442d-94a5-1c821eba8f04" />
+
+✔️ Marcar tarefas como concluídas
+🗑️ Exclusão com confirmação (AlertDialog – shadcn/ui)
+🌙 Tema Dark / Light
+📱 Layout responsivo
 
 ## Getting Started
 
