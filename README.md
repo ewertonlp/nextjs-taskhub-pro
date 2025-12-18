@@ -57,7 +57,7 @@ Aplicação web moderna para gerenciamento de tarefas, desenvolvida com Next.js,
 
 ## Getting Started
 
-You need to set up your project in [`Supabase`](https://supabase.com/dashboard/sign-in?returnTo=%2Forganizations) To log in via Google OAuth, you also need to create a project in the [`Google Cloud Console`](https://console.cloud.google.com/), and then configure the environment variables (create a .env.local file).
+É preciso configurar o projeto em [`Supabase`](https://supabase.com/dashboard/sign-in?returnTo=%2Forganizations) Para fazer login via Google OAuth, você também precisa criar um projeto no [`Google Cloud Console`](https://console.cloud.google.com/), e então configure as variáveis de ambiente (crie o arquivo .env.local).
 
 ## Variáveis de Ambiente
 
@@ -99,13 +99,12 @@ Este projeto foi desenvolvido com foco em:
 - Criar um projeto real para portfólio profissional
 
 
+#
+#
+#
 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Images
+## Imagens
 
 <img width="1046" height="862" alt="trakhub-landing" src="https://github.com/user-attachments/assets/2fe6c2cb-d42a-4c5b-b333-3f7c26dc4ee8" />
 <img width="1884" height="862" alt="taskkhub-dashboard" src="https://github.com/user-attachments/assets/754cb1b6-0f27-43b7-b9ed-7911b66245b0" />
